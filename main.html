@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Hospital Near Me</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+      gap: 15px;
+    }
+    #controls button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    #controls button:hover {
+      background-color: #0056b3;
+    }
+    #map {
+      height: 500px;
+      margin: 0 auto;
+      max-width: 1000px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    #info {
+      margin-top: 20px;
+      text-align: center;
+      color: #333;
+      font-size: 18px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+    .modal-content h2 {
+      margin: 0;
+      margin-bottom: 15px;
+      color: #007bff;
+    }
+    .modal-content button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background-color: #0056b3;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Find Hospital Near Me</h1>
+  </header>
+  <div id="controls">
+    <button onclick="findHospitals()">Search Nearby Hospitals</button>
+    <button onclick="setRadius()">Set Radius</button>
+  </div>
+  <div id="map"></div>
+  <div id="info"></div>
+
+  <!-- Modal for setting radius -->
+  <div id="radiusModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Set Search Radius</h2>
+      <label for="radius">Enter radius in kilometers:</label>
+      <input type="number" id="radius" min="1" max="50" placeholder="e.g., 15">
+      <br><br>
+      <button onclick="applyRadius()">Apply</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
